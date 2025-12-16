@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task CRUD - Node.js</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div>
+          <h1 class="title">Task CRUD Website</h1>
+          <p class="subtitle">Node.js + Express (no database yet)</p>
+        </div>
+        <div class="header-actions">
+          <a class="btn btn-secondary" href="/api" target="_blank" rel="noreferrer">View API</a>
+        </div>
+      </header>
+
+      <main class="grid">
+        <section class="card">
+          <h2 class="card-title">Create Task</h2>
+
+          <form id="createForm" class="form">
+            <label class="label">
+              <span>Title</span>
+              <input id="title" class="input" type="text" placeholder="e.g., Deploy to EC2" required />
+            </label>
+
+            <label class="label">
+              <span>Description</span>
+              <textarea id="description" class="input" placeholder="What will you do today?"></textarea>
+            </label>
+
+            <label class="label">
+              <span>Status</span>
+              <select id="status" class="input">
+                <option value="pending" selected>pending</option>
+                <option value="done">done</option>
+              </select>
+            </label>
+
+            <button class="btn" type="submit">Add Task</button>
+          </form>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">Tasks</h2>
+            <button id="refreshBtn" class="btn btn-secondary" type="button">Refresh</button>
+          </div>
+
+          <div id="stats" class="stats"></div>
+          <div id="tasks" class="tasks"></div>
+        </section>
+      </main>
+
+      <div id="modalOverlay" class="modal-overlay hidden"></div>
+      <div id="editModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+        <div class="modal-header">
+          <h3 id="editTitle" class="modal-title">Edit Task</h3>
+          <button id="closeModalBtn" class="icon-btn" type="button" aria-label="Close">✕</button>
+        </div>
+
+        <form id="editForm" class="form">
+          <input id="editId" type="hidden" />
+
+          <label class="label">
+            <span>Title</span>
+            <input id="editTitleInput" class="input" type="text" required />
+          </label>
+
+          <label class="label">
+            <span>Description</span>
+            <textarea id="editDescriptionInput" class="input"></textarea>
+          </label>
+
+          <label class="label">
+            <span>Status</span>
+            <select id="editStatusInput" class="input">
+              <option value="pending">pending</option>
+              <option value="done">done</option>
+            </select>
+          </label>
+
+          <div class="modal-actions">
+            <button class="btn" type="submit">Save Changes</button>
+            <button id="cancelModalBtn" class="btn btn-secondary" type="button">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
